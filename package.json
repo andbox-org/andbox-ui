@@ -4,7 +4,7 @@
   "description": "Design tokens & UI components for &box apps",
   "main": "dist/bundle.js",
   "scripts": {
-    "build": "rollup -c",
+    "build": "rollup -c && tailwindcss -m -i tailwind.css -o dist/bundle.css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

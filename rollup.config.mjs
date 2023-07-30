@@ -21,6 +21,8 @@ export default {
       declarationDir: 'dist',
     }),
     postcss({
+      extract: true,
+      minimize: true,
       extensions: ['.css'],
       plugins: [],
     }),
