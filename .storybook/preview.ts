@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react';
 
+import '../tailwind.css';
 
 // Noto Sans JP
 import '@fontsource/noto-sans-jp/300.css';

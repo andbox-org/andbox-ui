@@ -1,4 +1,4 @@
-export const tailwindConfigColors = {
+export const colors = {
 	'transparent': 'transparent',
 	'brand': 'var(--md-source-primary)',
 	'primary': {
