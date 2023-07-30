@@ -1,4 +1,6 @@
 import typescript from '@rollup/plugin-typescript';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 export default {
   input: 'src/index.ts',
@@ -9,9 +11,14 @@ export default {
     sourcemap: true,
     preserveModules: true,
   },
-  plugins: [typescript({
-    declaration: true,
-    rootDir: 'src',
-    declarationDir: 'dist',
-  })]
+  external: ['react', 'react/jsx-runtime'],
+  plugins: [
+    resolve(),
+    commonjs(),
+    typescript({
+      declaration: true,
+      rootDir: 'src',
+      declarationDir: 'dist',
+    }),
+  ],
 };
