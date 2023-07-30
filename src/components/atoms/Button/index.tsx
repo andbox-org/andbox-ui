@@ -31,14 +31,14 @@ export const Button: FC<Props> = ({
 
   const colorClassName =
     buttonType === 'primary'
-      ? 'bg-primary text-on-primary hover:opacity-80'
+      ? 'bg-primary text-on-primary data-[loading=false]:hover:opacity-80'
       : buttonType === 'danger'
-      ? 'bg-error text-on-error hover:opacity-80'
+      ? 'bg-error text-on-error data-[loading=false]:hover:opacity-80'
       : buttonType === 'neutral-outlined'
-      ? 'border-outline-variant bg-surface text-on-surface hover:opacity-70'
+      ? 'border-outline-variant bg-surface text-on-surface data-[loading=false]:hover:opacity-70'
       : buttonType === 'neutral-text'
-      ? 'text-on-surface hover:opacity-70'
-      : 'bg-on-surface text-surface hover:opacity-80';
+      ? 'text-on-surface data-[loading=false]:hover:opacity-70'
+      : 'bg-on-surface text-surface data-[loading=false]:hover:opacity-80';
 
   const sizeClassName =
     size === 'lg'
@@ -83,7 +83,9 @@ export const Button: FC<Props> = ({
     <button
       type={type}
       className={clsx(
-        'group relative flex items-center justify-center',
+        ['group', 'relative'],
+        ['data-[loading=true]:cursor-progress'],
+        ['flex', 'items-center', 'justify-center'],
         gapClassName,
         fontClassName,
         paddingClassName,
@@ -98,16 +100,21 @@ export const Button: FC<Props> = ({
       {...otherProps}
     >
       <span className="group-data-[loading=true]:invisible">{children}</span>
-      <span className="hidden group-data-[loading=true]:inline-block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-        <span
-          className={clsx(
-            'animate-spin rounded-full border-t-transparent',
-            sizeClassName,
-            loadingColorClassName,
-            loadingSizeName,
-          )}
-        />
-      </span>
+      <div className={clsx(
+        ['hidden', 'group-data-[loading=true]:inline-block'],
+        ['absolute', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2'],
+      )}>
+        <div className="flex justify-center" aria-label="読み込み中">
+          <span
+            className={clsx(
+              ['animate-spin', 'rounded-full', 'border-t-transparent'],
+              sizeClassName,
+              loadingColorClassName,
+              loadingSizeName,
+            )}
+          />
+        </div>
+      </div>
     </button>
   );
 };

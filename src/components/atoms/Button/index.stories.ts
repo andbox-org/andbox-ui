@@ -33,6 +33,9 @@ const meta = {
         'lg',
       ],
     },
+    loading: {
+      control: 'boolean',
+    },
   },
 } satisfies Meta<typeof Button>;
 
