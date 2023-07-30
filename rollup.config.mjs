@@ -5,11 +5,10 @@ import commonjs from '@rollup/plugin-commonjs';
 export default {
   input: 'src/index.ts',
   output: {
-    dir: 'dist',
+    file: 'dist/bundle.js',
     format: 'cjs',
     exports: 'named',
     sourcemap: true,
-    preserveModules: true,
   },
   external: ['react', 'react/jsx-runtime'],
   plugins: [

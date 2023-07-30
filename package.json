@@ -2,7 +2,7 @@
   "name": "andbox-ui",
   "version": "0.1.0",
   "description": "Design tokens & UI components for &box apps",
-  "main": "dist/index.d.ts",
+  "main": "dist/bundle.js",
   "scripts": {
     "build": "rollup -c",
     "test": "echo \"Error: no test specified\" && exit 1",
