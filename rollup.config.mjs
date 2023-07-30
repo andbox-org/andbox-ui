@@ -1,6 +1,7 @@
 import typescript from '@rollup/plugin-typescript';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import postcss from 'rollup-plugin-postcss';
 
 export default {
   input: 'src/index.ts',
@@ -18,6 +19,10 @@ export default {
       declaration: true,
       rootDir: 'src',
       declarationDir: 'dist',
+    }),
+    postcss({
+      extensions: ['.css'],
+      plugins: [],
     }),
   ],
 };
