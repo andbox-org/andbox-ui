@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, FC } from 'react';
 import clsx from 'clsx';
 
-type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: string;
   buttonType?:
     | 'primary'
@@ -14,7 +14,7 @@ type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
 };
 
-export const Button: FC<Props> = ({
+export const Button: FC<ButtonProps> = ({
   children,
   buttonType = 'neutral-filled',
   type = 'button',

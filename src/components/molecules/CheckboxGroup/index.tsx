@@ -3,14 +3,14 @@ import clsx from 'clsx';
 
 import { Checkbox, CheckboxProps } from '../../atoms/Checkbox';
 
-type Props = CheckboxProps & {
+export type CheckboxGroupProps = CheckboxProps & {
   label: string;
   supportText?: string;
   errorText?: string;
   className?: string;
 };
 
-export const CheckboxGroup: FC<Props> = ({
+export const CheckboxGroup: FC<CheckboxGroupProps> = ({
   label,
   supportText,
   errorText,

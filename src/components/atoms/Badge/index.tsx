@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-type BadgeProps = {
+export type BadgeProps = {
   text: string;
   className?: string;
 };
