@@ -8,7 +8,7 @@ import { BsCheck, BsDash } from 'react-icons/bs';
 import clsx from 'clsx';
 
 export type CheckboxProps = _CheckboxProps & {
-  symbol: 'check' | 'dash';
+  symbol?: 'check' | 'dash';
   disabled?: boolean;
   error?: boolean;
   className?: string;
