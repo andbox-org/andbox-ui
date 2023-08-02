@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Design tokens & UI components for &box apps",
   "main": "dist/bundle.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c && tailwindcss -m -i tailwind.css -o dist/bundle.css",
     "test": "jest",
