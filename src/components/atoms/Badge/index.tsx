@@ -1,11 +1,11 @@
 import { FC } from 'react';
 
 export type BadgeProps = {
-  text: string;
+  children: string;
   className?: string;
 };
 
-export const Badge: FC<BadgeProps> = ({ text, className }) => {
+export const Badge: FC<BadgeProps> = ({ children, className }) => {
   return (
     <div className={`
       inline-flex items-center rounded-full 
@@ -15,7 +15,7 @@ export const Badge: FC<BadgeProps> = ({ text, className }) => {
       ring-1 ring-inset ring-outline-variant
       ${className}
     `}>
-      {text}
+      {children}
     </div>
   );
 };
