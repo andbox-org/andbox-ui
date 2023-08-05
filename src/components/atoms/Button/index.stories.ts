@@ -50,3 +50,102 @@ export const Primary: Story = {
     children: 'アクション',
   },
 };
+
+export const NeutralFilled: Story = {
+  args: {
+    buttonType: 'neutral-filled',
+    size: 'md',
+    children: 'アクション',
+  },
+};
+
+export const NeutralOutined: Story = {
+  args: {
+    buttonType: 'neutral-outlined',
+    size: 'md',
+    children: 'アクション',
+  },
+};
+
+export const NeutralText: Story = {
+  args: {
+    buttonType: 'neutral-text',
+    size: 'md',
+    children: 'アクション',
+  },
+};
+
+
+export const PrimaryLoading: Story = {
+  args: {
+    buttonType: 'primary',
+    size: 'md',
+    children: 'アクション',
+    loading: true,
+  },
+};
+
+export const NeutralFilledLoading: Story = {
+  args: {
+    buttonType: 'neutral-filled',
+    size: 'md',
+    children: 'アクション',
+    loading: true,
+  },
+};
+
+export const NeutralOutlinedLoading: Story = {
+  args: {
+    buttonType: 'neutral-outlined',
+    size: 'md',
+    children: 'アクション',
+    loading: true,
+  },
+};
+
+
+export const NeutralTextLoading: Story = {
+  args: {
+    buttonType: 'neutral-text',
+    size: 'md',
+    children: 'アクション',
+    loading: true,
+  },
+};
+
+export const PrimaryDisabled: Story = {
+  args: {
+    buttonType: 'primary',
+    size: 'md',
+    children: 'アクション',
+    disabled: true,
+  },
+};
+
+export const NeutralFilledDisabled: Story = {
+  args: {
+    buttonType: 'neutral-filled',
+    size: 'md',
+    children: 'アクション',
+    disabled: true,
+  },
+};
+
+export const NeutralOutlinedDisabled: Story = {
+  args: {
+    buttonType: 'neutral-outlined',
+    size: 'md',
+    children: 'アクション',
+    disabled: true,
+  },
+};
+
+
+export const NeutralTextDisabled: Story = {
+  args: {
+    buttonType: 'neutral-text',
+    size: 'md',
+    children: 'アクション',
+    disabled: true,
+  },
+};
