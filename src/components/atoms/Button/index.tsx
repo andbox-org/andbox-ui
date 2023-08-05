@@ -29,16 +29,27 @@ export const Button: FC<ButtonProps> = ({
     border: buttonType === 'neutral-outlined',
   };
 
-  const colorClassName =
+  const containerColorClassName =
     buttonType === 'primary'
-      ? 'bg-primary text-on-primary data-[loading=false]:hover:opacity-80'
+      ? ['bg-primary', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-80']
       : buttonType === 'danger'
-      ? 'bg-error text-on-error data-[loading=false]:hover:opacity-80'
+      ? ['bg-error', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-80']
       : buttonType === 'neutral-outlined'
-      ? 'border-outline-variant bg-surface text-on-surface data-[loading=false]:hover:opacity-70'
+      ? ['border-outline-variant', 'bg-surface', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-70']
       : buttonType === 'neutral-text'
-      ? 'text-on-surface data-[loading=false]:hover:opacity-70'
-      : 'bg-on-surface text-surface data-[loading=false]:hover:opacity-80';
+      ? []
+      : ['bg-on-surface', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-80']; // neutral-filled
+  
+  const labelColorClassName = 
+    buttonType === 'primary' ? ['text-on-primary']
+    : buttonType === 'danger' ? ['text-on-error']
+    : buttonType === 'neutral-outlined' ? ['text-on-surface']
+    : buttonType === 'neutral-text' ? ['text-on-surface', 'group-disabled:opacity-30']
+    : ['text-surface']; // neutral-filled
+  
+  const ringClassName = buttonType === 'neutral-outlined' ? ['ring-1', 'ring-inset', 'ring-outline-variant'] : [];
+
+  const cursorClassName = ['data-[loading=true]:cursor-progress', 'disabled:data-[loading=false]:cursor-not-allowed'];
 
   const sizeClassName =
     size === 'lg'
@@ -84,22 +95,23 @@ export const Button: FC<ButtonProps> = ({
       type={type}
       className={clsx(
         ['group', 'relative'],
-        ['data-[loading=true]:cursor-progress'],
+        cursorClassName,
         ['flex', 'items-center', 'justify-center'],
         gapClassName,
         fontClassName,
         paddingClassName,
         shapeClassName,
         borderClassName,
-        colorClassName,
+        containerColorClassName,
         sizeClassName,
+        ringClassName,
         className
       )}
       data-loading={loading}
       disabled={loading}
       {...otherProps}
     >
-      <span className="group-data-[loading=true]:invisible">{children}</span>
+      <span className={clsx('group-data-[loading=true]:invisible', labelColorClassName)}>{children}</span>
       <div className={clsx(
         ['hidden', 'group-data-[loading=true]:inline-block'],
         ['absolute', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2'],
