@@ -2,7 +2,7 @@ export const colors = {
 	'transparent': 'transparent',
 	'brand': 'var(--md-source-primary)',
 	'primary': {
-		DEFAULT: 'var(--md-sys-color-primary)',
+		DEFAULT: 'hsl(var(--md-sys-color-primary) / <alpha-value>)',
 		container: 'var(--md-sys-color-primary-container)',
 		0: 'var(--md-ref-palette-primary0)',
 		10: 'var(--md-ref-palette-primary10)',
@@ -113,7 +113,7 @@ export const colors = {
 		tint: 'var(--md-sys-color-surface-tint)',
 	},
 	'on-surface': {
-		DEFAULT: 'var(--md-sys-color-on-surface)',
+		DEFAULT: 'hsl(var(--md-sys-color-on-surface) / <alpha-value>)',
 		container: 'var(--md-sys-color-on-surface-container)',
 	},
 	'outline': {
