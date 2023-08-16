@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, FC } from 'react';
+import { ButtonHTMLAttributes, forwardRef } from 'react';
 import clsx from 'clsx';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -14,7 +14,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   className?: string;
 };
 
-export const Button: FC<ButtonProps> = ({
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   children,
   buttonType = 'neutral-filled',
   type = 'button',
@@ -23,7 +23,7 @@ export const Button: FC<ButtonProps> = ({
   loading = false,
   className,
   ...otherProps
-}) => {
+}, ref) => {
   const shapeClassName = {
     'rounded-lg': buttonType !== 'neutral-text',
     border: buttonType === 'neutral-outlined',
@@ -92,6 +92,7 @@ export const Button: FC<ButtonProps> = ({
 
   return (
     <button
+      ref={ref}
       type={type}
       className={clsx(
         ['group', 'relative'],
@@ -129,4 +130,4 @@ export const Button: FC<ButtonProps> = ({
       </div>
     </button>
   );
-};
+});
