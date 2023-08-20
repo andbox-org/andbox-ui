@@ -1,6 +1,6 @@
 import { createRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { BsCheck, BsThreeDotsVertical, BsHouse } from 'react-icons/bs';
+import { BsCheck } from 'react-icons/bs';
 
 import { IconButton } from './index';
 
