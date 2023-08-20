@@ -3,7 +3,7 @@ import clsx from 'clsx';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   children: string;
-  buttonType?:
+  variant?:
     | 'primary'
     | 'danger'
     | 'neutral-filled'
@@ -16,7 +16,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   children,
-  buttonType = 'neutral-filled',
+  variant = 'neutral-filled',
   type = 'button',
   color = 'primary',
   size = 'md',
@@ -25,29 +25,29 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   ...otherProps
 }, ref) => {
   const shapeClassName = {
-    'rounded-lg': buttonType !== 'neutral-text',
-    border: buttonType === 'neutral-outlined',
+    'rounded-lg': variant !== 'neutral-text',
+    border: variant === 'neutral-outlined',
   };
 
   const containerColorClassName =
-    buttonType === 'primary'
+    variant === 'primary'
       ? ['bg-primary', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-80']
-      : buttonType === 'danger'
+      : variant === 'danger'
       ? ['bg-error', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-80']
-      : buttonType === 'neutral-outlined'
+      : variant === 'neutral-outlined'
       ? ['border-outline-variant', 'bg-surface', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-70']
-      : buttonType === 'neutral-text'
+      : variant === 'neutral-text'
       ? []
       : ['bg-on-surface', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-80']; // neutral-filled
   
   const labelColorClassName = 
-    buttonType === 'primary' ? ['text-on-primary']
-    : buttonType === 'danger' ? ['text-on-error']
-    : buttonType === 'neutral-outlined' ? ['text-on-surface']
-    : buttonType === 'neutral-text' ? ['text-on-surface', 'group-disabled:opacity-30']
+    variant === 'primary' ? ['text-on-primary']
+    : variant === 'danger' ? ['text-on-error']
+    : variant === 'neutral-outlined' ? ['text-on-surface']
+    : variant === 'neutral-text' ? ['text-on-surface', 'group-disabled:opacity-30']
     : ['text-surface']; // neutral-filled
   
-  const ringClassName = buttonType === 'neutral-outlined' ? ['ring-1', 'ring-inset', 'ring-outline-variant'] : [];
+  const ringClassName = variant === 'neutral-outlined' ? ['ring-1', 'ring-inset', 'ring-outline-variant'] : [];
 
   const cursorClassName = ['data-[loading=true]:cursor-progress', 'disabled:data-[loading=false]:cursor-not-allowed'];
 
@@ -59,7 +59,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       : 'text-sm leading-[0.875rem]';
 
   const paddingClassName =
-    buttonType !== 'neutral-text'
+    variant !== 'neutral-text'
       ? size === 'lg'
         ? 'px-5 py-3'
         : size === 'sm'
@@ -72,17 +72,17 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       : 'px-2 py-2';
 
   const fontClassName =
-    buttonType === 'neutral-text' ? 'font-medium' : 'font-bold';
+    variant === 'neutral-text' ? 'font-medium' : 'font-bold';
 
-  const borderClassName = buttonType === 'neutral-outlined' ? 'border' : '';
+  const borderClassName = variant === 'neutral-outlined' ? 'border' : '';
 
   const gapClassName = size === 'sm' ? 'gap-1' : size === 'lg' ? 'gap-2' : 'gap-2';
 
   const loadingColorClassName =
-    buttonType === 'primary' ? 'border-on-primary'
-    : buttonType === 'danger' ? 'border-on-error'
-    : buttonType === 'neutral-outlined' ? 'border-on-surface'
-    : buttonType === 'neutral-text' ? 'border-on-surface'
+    variant === 'primary' ? 'border-on-primary'
+    : variant === 'danger' ? 'border-on-error'
+    : variant === 'neutral-outlined' ? 'border-on-surface'
+    : variant === 'neutral-text' ? 'border-on-surface'
     : 'border-surface';
 
   const loadingSizeName =
