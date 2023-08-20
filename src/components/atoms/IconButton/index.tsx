@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { ButtonHTMLAttributes, LinkHTMLAttributes, FC } from 'react';
+import { ButtonHTMLAttributes, ForwardedRef, HTMLAttributes, forwardRef } from 'react';
 import { IconType } from 'react-icons';
 
 type CommonIconButtonProps = {
@@ -8,29 +8,30 @@ type CommonIconButtonProps = {
   color?: 'neutral' | 'primary';
 };
 
-type IconButtonProps = (
+export type IconButtonProps = (
   | (ButtonHTMLAttributes<HTMLButtonElement> & {
-      tag?: 'button';
+      as?: 'button';
     })
-  | (LinkHTMLAttributes<HTMLAnchorElement> & {
-      tag: 'a';
+  | (HTMLAttributes<HTMLSpanElement> & {
+      as: 'span';
     })
 ) &
   CommonIconButtonProps;
 
-export const IconButton: FC<IconButtonProps> = ({
+export const IconButton = forwardRef<HTMLButtonElement | HTMLSpanElement, IconButtonProps>(({
   icon,
   size = 'md',
   color = 'neutral',
   className,
   ...props
-}) => {
+}, ref) => {
   const Icon = icon;
   const iconClassName = clsx(
     color === 'primary' ? 'text-primary' : 'text-on-surface',
     size === 'lg' ? 'w-6 h-6' : size === 'sm' ? 'w-4 h-4' : 'w-5 h-5'
   );
   const wrapperClassName = clsx(
+    'inline-flex',
     'p-1',
     'rounded-full',
     color === 'primary' ? 'hover:bg-primary/10' : 'hover:bg-on-surface/10',
@@ -43,18 +44,28 @@ export const IconButton: FC<IconButtonProps> = ({
     className,
   );
 
-  if (props.tag === 'a') {
+  if (props.as === 'span') {
+    const { as: _, ...spanProps } = props;
     return (
-      <a className={wrapperClassName} {...props}>
+      <span
+        ref={ref as ForwardedRef<HTMLSpanElement>}
+        className={wrapperClassName}
+        {...spanProps}
+      >
         <Icon className={iconClassName} />
-      </a>
+      </span>
     );
   }
 
   // tag = button
+  const { as: _, ...buttonProps } = props;
   return (
-    <button className={wrapperClassName} {...props}>
+    <button
+      ref={ref as ForwardedRef<HTMLButtonElement>}
+      className={wrapperClassName}
+      {...buttonProps}
+    >
       <Icon className={iconClassName} />
     </button>
   );
-};
+});

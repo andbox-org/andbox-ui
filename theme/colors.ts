@@ -117,8 +117,8 @@ export const colors = {
 		container: 'var(--md-sys-color-on-surface-container)',
 	},
 	'outline': {
-		DEFAULT: 'var(--md-sys-color-outline)',
-		variant: 'var(--md-sys-color-outline-variant)',
+		DEFAULT: 'hsl(var(--md-sys-color-outline) / <alpha-value>)',
+		variant: 'hsl(var(--md-sys-color-outline-variant) / <alpha-value>)',
 	},
 	shadow: 'var(--md-sys-color-shadow)',
 	neutral: {

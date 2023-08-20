@@ -1,3 +1,4 @@
+import { createRef } from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import { Button } from './index';
@@ -28,5 +29,11 @@ describe('Button', () => {
     render(<Button onClick={onClick}>Test</Button>);
     fireEvent.click(screen.getByRole('button'));
     expect(onClick).toHaveBeenCalled();
+  });
+
+  it('can receive ref', () => {
+    const ref = createRef<HTMLButtonElement>();
+    render(<Button ref={ref}>Test</Button>);
+    expect(ref.current).toBeInTheDocument();
   });
 });
