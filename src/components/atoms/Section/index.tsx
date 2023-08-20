@@ -6,5 +6,5 @@ export const Section = {
   Header,
 };
 
-export type * from './_Root';
-export type * from './_Header';
+export { SectionRootProps } from './_Root';
+export { SectionHeaderProps } from './_Header';

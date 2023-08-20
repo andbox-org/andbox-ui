@@ -6,5 +6,5 @@ export const Main = {
   Header,
 };
 
-export type * from './_Root';
-export type * from './_Header';
+export { MainRootProps } from './_Root';
+export { MainHeaderProps } from './_Header';
