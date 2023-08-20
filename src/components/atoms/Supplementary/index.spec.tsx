@@ -1,20 +1,20 @@
 import { render, screen } from '@testing-library/react';
 
-import { Suppelementary } from '.';
+import { Supplementary } from '.';
 
-describe('Suppelementary', () => {
+describe('Supplementary', () => {
   it('renders', () => {
-    const { container } = render(<Suppelementary items={[]} />);
+    const { container } = render(<Supplementary items={[]} />);
     expect(container).toBeInTheDocument();
   });
 
   it('renders with className', () => {
-    const { container } = render(<Suppelementary items={[]} className="test" />);
+    const { container } = render(<Supplementary items={[]} className="test" />);
     expect(container.firstChild).toHaveClass('test');
   });
 
   it('renders with items', () => {
-    render(<Suppelementary items={[
+    render(<Supplementary items={[
       { label: 'Item1', value: 'value1' },
       { label: 'Item2', value: 'value2' },
     ]} />);

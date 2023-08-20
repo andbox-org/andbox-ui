@@ -1,17 +1,17 @@
 import clsx from 'clsx';
 import { FC } from 'react';
 
-export type SuppelementaryItem = {
+export type SupplementaryItem = {
   value: string;
   label?: string;
 };
 
-export type SuppelementaryProps = {
-  items: SuppelementaryItem[];
+export type SupplementaryProps = {
+  items: SupplementaryItem[];
   className?: string;
 };
 
-export const Suppelementary: FC<SuppelementaryProps> = ({
+export const Supplementary: FC<SupplementaryProps> = ({
   items,
   className,
 }) => {

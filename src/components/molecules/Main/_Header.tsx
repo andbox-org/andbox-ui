@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { FC, ReactNode } from 'react';
-import { Suppelementary, SuppelementaryItem } from '../../atoms/Suppelementary';
+import { Supplementary, SupplementaryItem } from '../../atoms/Supplementary';
 
 export type MainHeaderInfoItem = {
   label: string;
@@ -10,7 +10,7 @@ export type MainHeaderInfoItem = {
 export type MainHeaderProps = {
   title: string;
   subtitle?: string;
-  supplementaryItems?: SuppelementaryItem[];
+  supplementaryItems?: SupplementaryItem[];
   children?: ReactNode;
   className?: string;
 };
@@ -40,7 +40,7 @@ export const Header: FC<MainHeaderProps> = ({
         ) : (
           <div className="text-3xl text-primary font-bold">{title}</div>
         )}
-        {supplementaryItems && <Suppelementary items={supplementaryItems} />}
+        {supplementaryItems && <Supplementary items={supplementaryItems} />}
       </div>
       {children && (
         <div className="flex flex-row-reverse items-center gap-3.5 flex-shrink">
