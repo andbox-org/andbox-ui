@@ -14,10 +14,11 @@ export type AvatarProps = _AvatarProps & {
   fallback?: Omit<AvatarFallbackProps, 'children'>;
   image?: AvatarImageProps;
   size?: 'sm' | 'md' | 'lg';
+  outlined?: boolean;
   className?: string;
 }
 
-export const Avatar: FC<AvatarProps> = ({ children, image, fallback, size = 'md', className, ...props }) => {
+export const Avatar: FC<AvatarProps> = ({ children, image, fallback, size = 'md', outlined, className, ...props }) => {
   return (
     <Root
       {...props}
@@ -28,6 +29,7 @@ export const Avatar: FC<AvatarProps> = ({ children, image, fallback, size = 'md'
           size === 'lg' ? 'w-12 h-12' : size === 'sm' ? 'w-6 h-6' : 'w-8 h-8',
         ],
         ['bg-surface-container'],
+        [ outlined ? 'border-2 border-surface' : undefined ],
         className,
       )}
     >
