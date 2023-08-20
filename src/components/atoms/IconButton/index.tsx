@@ -31,6 +31,7 @@ export const IconButton = forwardRef<HTMLButtonElement | HTMLSpanElement, IconBu
     size === 'lg' ? 'w-6 h-6' : size === 'sm' ? 'w-4 h-4' : 'w-5 h-5'
   );
   const wrapperClassName = clsx(
+    'inline-flex',
     'p-1',
     'rounded-full',
     color === 'primary' ? 'hover:bg-primary/10' : 'hover:bg-on-surface/10',

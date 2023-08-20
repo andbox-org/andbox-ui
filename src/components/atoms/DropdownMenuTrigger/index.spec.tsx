@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { WithDropdownMenu } from './index';
+import { DropdownMenuTrigger } from './index';
 
-describe('WithDropdownMenu', () => {
+describe('DropdownMenuTrigger', () => {
   it('renders', () => {
-    const { container } = render(<WithDropdownMenu menuFactory={({ Content, Item }) => (
+    const { container } = render(<DropdownMenuTrigger menuFactory={({ Content, Item }) => (
       <Content>
         <a href="#"><Item>Anchor Link</Item></a>
         <button className="w-full" onClick={() => alert('clicked')}><Item>Button</Item></button>
@@ -13,20 +13,20 @@ describe('WithDropdownMenu', () => {
       </Content> 
     )}>
       <button>Click Me</button>
-    </WithDropdownMenu>);
+    </DropdownMenuTrigger>);
     expect(container).toBeInTheDocument();
     expect(screen.getByText('Click Me')).toBeInTheDocument();
   });
 
   it('should be open when trigger clicked & menuitem can be selected', async () => {
     const onSelect = jest.fn();
-    render(<WithDropdownMenu menuFactory={({ Content, Item }) => (
+    render(<DropdownMenuTrigger menuFactory={({ Content, Item }) => (
       <Content>
         <Item onSelect={onSelect}>Item</Item>
       </Content> 
     )}>
       <button>Click Me</button>
-    </WithDropdownMenu>);
+    </DropdownMenuTrigger>);
     userEvent.click(screen.getByRole('button'));
 
     await waitFor(() => expect(screen.getByRole('menu')).toBeInTheDocument());
@@ -38,13 +38,13 @@ describe('WithDropdownMenu', () => {
   });
 
   it('should be closed when trigger clicked and menu item clicked', async () => {
-    render(<WithDropdownMenu menuFactory={({ Content, Item }) => (
+    render(<DropdownMenuTrigger menuFactory={({ Content, Item }) => (
       <Content>
         <Item>Item</Item>
       </Content> 
     )}>
       <button>Click Me</button>
-    </WithDropdownMenu>);
+    </DropdownMenuTrigger>);
     userEvent.click(screen.getByText('Click Me'));
     await waitFor(() => expect(screen.getByRole('menu')).toBeInTheDocument());
     userEvent.click(screen.getByRole('menuitem'));

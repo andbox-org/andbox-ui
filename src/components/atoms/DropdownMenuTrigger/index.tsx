@@ -1,20 +1,20 @@
-import { forwardRef, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 import { _Content } from './_Content';
 import { _Item } from './_Item';
 
-type WithDropdownMenuProps = {
+type DropdownMenuTriggerProps = {
   children: ReactNode;
   menuFactory: (props: {
     Content: typeof _Content, Item: typeof _Item
   }) => ReturnType<typeof _Content>;
 };
 
-export const WithDropdownMenu = ({
+export const DropdownMenuTrigger = ({
   children,
   menuFactory,
-}: WithDropdownMenuProps) => {
+}: DropdownMenuTriggerProps) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -29,3 +29,4 @@ export const WithDropdownMenu = ({
     </DropdownMenu.Root>
   );
 }
+

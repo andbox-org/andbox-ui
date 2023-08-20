@@ -4,6 +4,6 @@ export * from './components/atoms/Button';
 export * from './components/atoms/Card';
 export * from './components/atoms/Checkbox';
 export * from './components/atoms/IconButton';
-export * from './components/atoms/WithDropdownMenu';
+export * from './components/atoms/DropdownMenuTrigger';
 export * from './components/molecules/CheckboxGroup';
 export * from './components/molecules/UserSummary';

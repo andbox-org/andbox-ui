@@ -3,13 +3,13 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 
-import { WithDropdownMenu } from './index';
+import { DropdownMenuTrigger } from './index';
 import { IconButton } from '../IconButton';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-  title: 'Atoms/WithDropdownMenu',
-  component: WithDropdownMenu,
+  title: 'Atoms/DropdownMenuTrigger',
+  component: DropdownMenuTrigger,
   parameters: {
     // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
     layout: 'centered',
@@ -19,15 +19,15 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
   },
-} satisfies Meta<typeof WithDropdownMenu>;
+} satisfies Meta<typeof DropdownMenuTrigger>;
 
 export default meta;
-type Story = StoryObj<typeof WithDropdownMenu>;
+type Story = StoryObj<typeof DropdownMenuTrigger>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Example: Story = {
   render: () => (
-    <WithDropdownMenu menuFactory={({ Content, Item }) => (
+    <DropdownMenuTrigger menuFactory={({ Content, Item }) => (
       <Content>
         <a href="#"><Item>Anchor Link</Item></a>
         <button className="w-full" onClick={() => alert('clicked')}><Item>Button</Item></button>
@@ -35,6 +35,6 @@ export const Example: Story = {
       </Content> 
     )}>
       <IconButton icon={BsThreeDotsVertical} />
-    </WithDropdownMenu>
+    </DropdownMenuTrigger>
   ),
 };
