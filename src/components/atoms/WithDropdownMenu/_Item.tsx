@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, forwardRef } from 'react';
 import { Item, MenuItemProps } from '@radix-ui/react-dropdown-menu';
 import clsx from 'clsx';
 
@@ -9,11 +9,11 @@ export type DropdownMenuItemProps = Omit<MenuItemProps, 'asChild'> & {
   className?: string;
 };
 
-export const _Item = ({
+export const _Item = forwardRef<HTMLDivElement, DropdownMenuItemProps>(({
   children,
   className,
   ...props
-}: DropdownMenuItemProps) => {
+}, ref) => {
   return (
     <Item
       {...props}
@@ -28,8 +28,9 @@ export const _Item = ({
         ['disabled:opacity-50', 'disabled:cursor-not-allowed'],
         className
       )}
+      ref={ref}
     >
       {children}
     </Item>
   );
-}
+});

@@ -3,10 +3,11 @@ import {
   DropdownMenuContentProps
 } from '@radix-ui/react-dropdown-menu';
 import clsx from 'clsx';
+import { forwardRef } from 'react';
 
 export type _DropdownMenuContentProps = DropdownMenuContentProps;
 
-export const _Content = ({ className, ...props }: DropdownMenuContentProps) => {
+export const _Content = forwardRef<HTMLDivElement, DropdownMenuContentProps>(({ className, ...props }, ref) => {
   return (
     <Content
       {...props}
@@ -22,6 +23,7 @@ export const _Content = ({ className, ...props }: DropdownMenuContentProps) => {
       style={{
         transformOrigin: 'var(--radix-dropdown-menu-content-transform-origin)',
       }}
+      ref={ref}
     />
   );
-}
+});
