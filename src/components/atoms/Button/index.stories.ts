@@ -15,7 +15,7 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     children: { control: 'text' },
-    buttonType: {
+    variant: {
       control: 'select',
       options: [
         'primary',
@@ -45,7 +45,7 @@ type Story = StoryObj<typeof meta>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Primary: Story = {
   args: {
-    buttonType: 'primary',
+    variant: 'primary',
     size: 'md',
     children: 'アクション',
   },
@@ -53,7 +53,7 @@ export const Primary: Story = {
 
 export const NeutralFilled: Story = {
   args: {
-    buttonType: 'neutral-filled',
+    variant: 'neutral-filled',
     size: 'md',
     children: 'アクション',
   },
@@ -61,7 +61,7 @@ export const NeutralFilled: Story = {
 
 export const NeutralOutined: Story = {
   args: {
-    buttonType: 'neutral-outlined',
+    variant: 'neutral-outlined',
     size: 'md',
     children: 'アクション',
   },
@@ -69,7 +69,7 @@ export const NeutralOutined: Story = {
 
 export const NeutralText: Story = {
   args: {
-    buttonType: 'neutral-text',
+    variant: 'neutral-text',
     size: 'md',
     children: 'アクション',
   },
@@ -78,7 +78,7 @@ export const NeutralText: Story = {
 
 export const PrimaryLoading: Story = {
   args: {
-    buttonType: 'primary',
+    variant: 'primary',
     size: 'md',
     children: 'アクション',
     loading: true,
@@ -87,7 +87,7 @@ export const PrimaryLoading: Story = {
 
 export const NeutralFilledLoading: Story = {
   args: {
-    buttonType: 'neutral-filled',
+    variant: 'neutral-filled',
     size: 'md',
     children: 'アクション',
     loading: true,
@@ -96,7 +96,7 @@ export const NeutralFilledLoading: Story = {
 
 export const NeutralOutlinedLoading: Story = {
   args: {
-    buttonType: 'neutral-outlined',
+    variant: 'neutral-outlined',
     size: 'md',
     children: 'アクション',
     loading: true,
@@ -106,7 +106,7 @@ export const NeutralOutlinedLoading: Story = {
 
 export const NeutralTextLoading: Story = {
   args: {
-    buttonType: 'neutral-text',
+    variant: 'neutral-text',
     size: 'md',
     children: 'アクション',
     loading: true,
@@ -115,7 +115,7 @@ export const NeutralTextLoading: Story = {
 
 export const PrimaryDisabled: Story = {
   args: {
-    buttonType: 'primary',
+    variant: 'primary',
     size: 'md',
     children: 'アクション',
     disabled: true,
@@ -124,7 +124,7 @@ export const PrimaryDisabled: Story = {
 
 export const NeutralFilledDisabled: Story = {
   args: {
-    buttonType: 'neutral-filled',
+    variant: 'neutral-filled',
     size: 'md',
     children: 'アクション',
     disabled: true,
@@ -133,7 +133,7 @@ export const NeutralFilledDisabled: Story = {
 
 export const NeutralOutlinedDisabled: Story = {
   args: {
-    buttonType: 'neutral-outlined',
+    variant: 'neutral-outlined',
     size: 'md',
     children: 'アクション',
     disabled: true,
@@ -143,7 +143,7 @@ export const NeutralOutlinedDisabled: Story = {
 
 export const NeutralTextDisabled: Story = {
   args: {
-    buttonType: 'neutral-text',
+    variant: 'neutral-text',
     size: 'md',
     children: 'アクション',
     disabled: true,
