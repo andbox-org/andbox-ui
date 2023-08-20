@@ -12,7 +12,6 @@ export const _Content = forwardRef<HTMLDivElement, DropdownMenuContentProps>(({ 
     <Content
       {...props}
       className={clsx(
-        ['w-64'],
         ['py-2'],
         ['bg-surface'],
         ['border', 'border-outline-variant'],

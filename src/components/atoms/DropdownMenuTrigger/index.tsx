@@ -4,7 +4,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { _Content } from './_Content';
 import { _Item } from './_Item';
 
-type DropdownMenuTriggerProps = {
+export type DropdownMenuTriggerProps = {
   children: ReactNode;
   menuFactory: (props: {
     Content: typeof _Content, Item: typeof _Item
@@ -29,4 +29,3 @@ export const DropdownMenuTrigger = ({
     </DropdownMenu.Root>
   );
 }
-
