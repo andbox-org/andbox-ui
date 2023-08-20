@@ -3,6 +3,8 @@ import { BsCheck, BsThreeDotsVertical, BsHouse } from 'react-icons/bs';
 
 import { Card } from './index';
 import { UserSummary } from '../../molecules/UserSummary';
+import { DropdownMenuTrigger } from '../DropdownMenuTrigger';
+import { IconButton } from '../IconButton';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -17,7 +19,6 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     children: { control: 'text' },
-    tag: { control: 'select', options: [ 'div', 'a', 'button' ] },
   },
 } satisfies Meta<typeof Card>;
 
@@ -43,28 +44,43 @@ export const DivTag: Story = {
   },
 };
 
-export const AnchorTag: Story = {
+export const Interactive: Story = {
   args: {
-    tag: 'a',
-    href: '#',
-    children: dummyUserSummary,
-    actionLabel: '開く',
+    children: (
+      <div className="flex flex-col gap-4">
+        <div className="flex gap-2">
+          {dummyUserSummary}
+          <div>
+            <DropdownMenuTrigger
+              menuFactory={({ Content, Item }) => (
+                <Content>
+                  <Item>Item1</Item>
+                </Content>
+              )}
+            >
+              <IconButton size="sm" icon={BsThreeDotsVertical} />
+            </DropdownMenuTrigger>
+          </div>
+        </div>
+      </div>
+    ),
   },
-};
-
-export const ButtonTag: Story = {
-  args: {
-    tag: 'button',
-    children: dummyUserSummary,
-    actionLabel: '選ぶ',
-  },
+  render: ({ children }) => (
+    <a href="#" className="block group outline-none">
+      <Card className="pr-2" hasParent>
+        {children}
+      </Card>
+    </a>
+  ),
 };
 
 export const Disabled: Story = {
   args: {
-    tag: 'button',
     children: dummyUserSummary,
-    actionLabel: '選ぶ',
-    disabled: true,
   },
+  render: ({ children }) => (
+    <Card className="pr-2" disabled>
+      {children}
+    </Card>
+  ),
 };

@@ -1,69 +1,32 @@
 import clsx from 'clsx';
-import { ButtonHTMLAttributes, HTMLAttributes, LinkHTMLAttributes, ReactNode } from 'react';
+import { ButtonHTMLAttributes, HTMLAttributes, LinkHTMLAttributes, ReactNode, forwardRef } from 'react';
 
-type CommonCardProps = {
+export type CardProps = HTMLAttributes<HTMLDivElement> & {
   children: ReactNode;
+  hasParent?: boolean;
+  disabled?: boolean;
   className?: string;
 };
 
-type DivCardProps = HTMLAttributes<HTMLDivElement> & CommonCardProps & {
-  tag?: 'div';
-  actionLabel?: null;
-};
-
-type LinkCardProps = LinkHTMLAttributes<HTMLAnchorElement> & CommonCardProps & {
-  tag: 'a';
-  actionLabel?: string;
-};
-
-type ButtonCardProps = ButtonHTMLAttributes<HTMLButtonElement> & CommonCardProps & {
-  tag: 'button';
-  actionLabel?: string;
-};
-
-export type CardProps = 
-  | DivCardProps
-  | LinkCardProps
-  | ButtonCardProps;
-
-export const Card = ({ actionLabel, children, className, ...props }: CardProps) => {
+export const Card = forwardRef<HTMLDivElement, CardProps>(({ children, hasParent, disabled, className, ...props }, ref) => {
   const wrapperClassName = clsx(
-    ['group'],
-    ['flex flex-col gap-3'],
     ['px-4', 'py-3'],
     ['rounded-xl', 'border', 'border-outline-variant'],
     ['bg-surface'],
     ['shadow-sm'],
-    [props.tag === 'a' || props.tag === 'button' ? 'hover:shadow-md hover:cursor-pointer' : undefined],
-    ['focus:outline-none', 'focus:ring-1', 'focus:ring-outline'],
-    ['disabled:opacity-50', 'disabled:bg-transparent', 'disabled:cursor-not-allowed', 'disabled:shadow-none'],
+    hasParent ? [
+      ['group-hover:shadow-md'],
+      ['group-focus:outline-none', 'group-focus:ring-1', 'group-focus:ring-outline'],
+      ['group-aria-disabled:opacity-50', 'group-aria-disabled:bg-transparent', 'group-aria-disabled:shadow-none', 'group-aria-disabled:cursor-not-allowed'],
+    ] : [
+      ['aria-disabled:opacity-50', 'aria-disabled:bg-transparent', 'aria-disabled:shadow-none', 'aria-disabled:cursor-not-allowed'],
+    ],
     className,
   );
 
-  const action = (actionLabel && <div className="text-sm text-primary font-medium group-hover:underline group-disabled:no-underline">{actionLabel}</div>);
-
-  if (props.tag === 'a') {
-    return (
-      <a {...props} className={wrapperClassName}>
-        {children}
-        {action}
-      </a>
-    );
-  }
-
-  if (props.tag === 'button') {
-    return (
-      <button {...props} className={wrapperClassName}>
-        {children}
-        {action}
-      </button>
-    );
-  }
-
-  // tag = div
   return (
-    <div {...props} className={wrapperClassName}>
+    <div {...props} ref={ref} className={wrapperClassName} aria-disabled={disabled}>
       {children}
     </div>
   );
-};
+});
