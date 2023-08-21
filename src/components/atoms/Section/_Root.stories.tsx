@@ -31,9 +31,11 @@ export const Example: Story = {
         <Button>アクション1</Button>
         <Button variant="neutral-outlined">アクション2</Button>
       </Section.Header>
-      <Card>
-        コンテンツがここに入ります。
-      </Card>
+      <Section.Content>
+        <Card>
+          コンテンツがここに入ります。
+        </Card>
+      </Section.Content>
     </Section.Root>
   ),
 };

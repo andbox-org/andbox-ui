@@ -40,22 +40,24 @@ export const Example: Story = {
           size="md"
         />
       </Main.Header>
-      <Section.Root>
-        <Section.Header
-          title="担当クラス"
-          description="自分が先生として担当しているクラスが表示されます。"
-        >
-          <Button>クラスを追加</Button>
-        </Section.Header>
-        <Card>コンテンツがここに入ります。</Card>
-      </Section.Root>
-      <Section.Root>
-        <Section.Header
-          title="在籍クラス"
-          description="自分が生徒として在籍しているクラスが表示されます。"
-        />
-        <Card>コンテンツがここに入ります。</Card>
-      </Section.Root>
+      <Main.Content>
+        <Section.Root>
+          <Section.Header
+            title="担当クラス"
+            description="自分が先生として担当しているクラスが表示されます。"
+          >
+            <Button>クラスを追加</Button>
+          </Section.Header>
+          <Card>コンテンツがここに入ります。</Card>
+        </Section.Root>
+        <Section.Root>
+          <Section.Header
+            title="在籍クラス"
+            description="自分が生徒として在籍しているクラスが表示されます。"
+          />
+          <Card>コンテンツがここに入ります。</Card>
+        </Section.Root>
+      </Main.Content>
     </Main.Root>
   ),
 };

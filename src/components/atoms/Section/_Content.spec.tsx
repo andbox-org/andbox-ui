@@ -1,19 +1,19 @@
 import { render } from '@testing-library/react';
 
-import { Main } from '.';
+import { Section } from '.';
 
-describe('Main.Root', () => {
+describe('Secion.Content', () => {
   it('renders', () => {
-    const { container } = render(<Main.Root>Test</Main.Root>);
+    const { container } = render(<Section.Content>Test</Section.Content>);
     expect(container).toBeInTheDocument();
   });
   it('renders with children', () => {
-    const { container } = render(<Main.Root>Test</Main.Root>);
+    const { container } = render(<Section.Content>Test</Section.Content>);
     expect(container).toHaveTextContent('Test');
   });
 
   it('renders with className', () => {
-    const { container } = render(<Main.Root className="test">Test</Main.Root>);
+    const { container } = render(<Section.Content className="test">Test</Section.Content>);
     expect(container.firstChild).toHaveClass('test');
   });
 });
