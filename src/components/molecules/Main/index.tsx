@@ -8,6 +8,6 @@ export const Main = {
   Content,
 };
 
-export { MainRootProps } from './_Root';
-export { MainHeaderProps } from './_Header';
-export { MainContentProps } from './_Content';
+export type { MainRootProps } from './_Root';
+export type { MainHeaderProps } from './_Header';
+export type { MainContentProps } from './_Content';

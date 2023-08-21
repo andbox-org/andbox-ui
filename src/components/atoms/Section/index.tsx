@@ -8,6 +8,6 @@ export const Section = {
   Content,
 };
 
-export { SectionRootProps } from './_Root';
-export { SectionHeaderProps } from './_Header';
-export { SectionContentProps } from './_Content';
+export type { SectionRootProps } from './_Root';
+export type { SectionHeaderProps } from './_Header';
+export type { SectionContentProps } from './_Content';
