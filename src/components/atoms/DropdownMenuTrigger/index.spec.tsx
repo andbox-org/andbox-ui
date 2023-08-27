@@ -5,10 +5,12 @@ import { DropdownMenuTrigger } from './index';
 
 describe('DropdownMenuTrigger', () => {
   it('renders', () => {
-    const { container } = render(<DropdownMenuTrigger menuFactory={({ Content, Item }) => (
+    const { container } = render(<DropdownMenuTrigger menuFactory={({ Content, Item, Separator, Label }) => (
       <Content>
         <a href="#"><Item>Anchor Link</Item></a>
         <button className="w-full" onClick={() => alert('clicked')}><Item>Button</Item></button>
+        <Separator />
+        <Label>Label</Label>
         <Item>Item</Item>
       </Content> 
     )}>
@@ -49,5 +51,18 @@ describe('DropdownMenuTrigger', () => {
     await waitFor(() => expect(screen.getByRole('menu')).toBeInTheDocument());
     userEvent.click(screen.getByRole('menuitem'));
     await waitFor(() => expect(screen.queryByRole('menu')).not.toBeInTheDocument());
+  });
+
+  it('should be open when trigger clicked & label be visible', async () => {
+    render(<DropdownMenuTrigger menuFactory={({ Content, Item, Separator, Label }) => (
+      <Content>
+        <Label>Label</Label>
+      </Content>
+    )}>
+      <button>Click Me</button>
+    </DropdownMenuTrigger>
+    );
+    userEvent.click(screen.getByText('Click Me'));
+    await waitFor(() => expect(screen.getByText('Label')).toBeInTheDocument());
   });
 });

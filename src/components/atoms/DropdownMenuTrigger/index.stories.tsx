@@ -5,6 +5,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 
 import { DropdownMenuTrigger } from './index';
 import { IconButton } from '../IconButton';
+import { Separator } from '@radix-ui/react-dropdown-menu';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
@@ -27,10 +28,12 @@ type Story = StoryObj<typeof DropdownMenuTrigger>;
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Example: Story = {
   render: () => (
-    <DropdownMenuTrigger menuFactory={({ Content, Item }) => (
+    <DropdownMenuTrigger menuFactory={({ Content, Item, Label, Separator }) => (
       <Content>
         <a href="#"><Item>Anchor Link</Item></a>
         <button className="w-full" onClick={() => alert('clicked')}><Item>Button</Item></button>
+        <Separator />
+        <Label>Actions</Label>
         <Item>Item</Item>
       </Content> 
     )}>
