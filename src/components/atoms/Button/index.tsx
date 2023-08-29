@@ -1,7 +1,7 @@
-import { ButtonHTMLAttributes, forwardRef } from 'react';
+import { ComponentPropsWithoutRef, ForwardedRef, forwardRef } from 'react';
 import clsx from 'clsx';
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonCommonProps = {
   children: string;
   variant?:
     | 'primary'
@@ -10,46 +10,63 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     | 'neutral-outlined'
     | 'neutral-text';
   size?: 'sm' | 'md' | 'lg';
-  loading?: boolean;
   className?: string;
-};
+}
 
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
+export type ButtonProps = (
+  | ComponentPropsWithoutRef<'button'> & {
+      as?: 'button';    
+      loading?: boolean;
+    }
+  | ComponentPropsWithoutRef<'span'> & {
+      as: 'span';
+      disabled?: boolean;
+  }
+) & ButtonCommonProps;
+
+export const Button = forwardRef<HTMLButtonElement | HTMLSpanElement, ButtonProps>(({
   children,
   variant = 'neutral-filled',
-  type = 'button',
   color = 'primary',
   size = 'md',
-  loading = false,
+  disabled = false,
   className,
-  ...otherProps
+  ...props
 }, ref) => {
   const shapeClassName = {
     'rounded-lg': variant !== 'neutral-text',
     border: variant === 'neutral-outlined',
   };
 
+  const disabledOpacityClassName = 
+    props.as === 'span' ? 'aria-disabled:opacity-30' : 'disabled:data-[loading=false]:opacity-30';
+
   const containerColorClassName =
     variant === 'primary'
-      ? ['bg-primary', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-80']
+      ? ['bg-primary', disabledOpacityClassName, 'hover:data-[loading=false]:opacity-80']
       : variant === 'danger'
-      ? ['bg-error', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-80']
+      ? ['bg-error', disabledOpacityClassName, 'hover:data-[loading=false]:opacity-80']
       : variant === 'neutral-outlined'
-      ? ['border-outline-variant', 'bg-surface', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-70']
+      ? ['border-outline-variant', 'bg-surface', disabledOpacityClassName, 'hover:data-[loading=false]:opacity-70']
       : variant === 'neutral-text'
       ? []
-      : ['bg-on-surface', 'disabled:data-[loading=false]:opacity-30', 'hover:data-[loading=false]:opacity-80']; // neutral-filled
+      : ['bg-on-surface', disabledOpacityClassName, 'hover:data-[loading=false]:opacity-80']; // neutral-filled
   
-  const labelColorClassName = 
+  const labelClassName = [
+    size ==='lg' ? 'text-base' : size === 'sm' ? 'text-xs' : 'text-sm',
     variant === 'primary' ? ['text-on-primary']
     : variant === 'danger' ? ['text-on-error']
     : variant === 'neutral-outlined' ? ['text-on-surface']
-    : variant === 'neutral-text' ? ['text-on-surface', 'group-disabled:opacity-30']
-    : ['text-surface']; // neutral-filled
+    : variant === 'neutral-text' ? ['text-on-surface', props.as === 'span' ? 'group-aria-disabled:opacity-30' : 'group-disabled:opacity-30']
+    : ['text-surface'] // neutral-filled
+  ];
   
   const ringClassName = variant === 'neutral-outlined' ? ['ring-1', 'ring-inset', 'ring-outline-variant'] : [];
 
-  const cursorClassName = ['data-[loading=true]:cursor-progress', 'disabled:data-[loading=false]:cursor-not-allowed'];
+  const cursorClassName = [
+    'data-[loading=true]:cursor-progress', 
+    props.as === 'button' ? 'disabled:data-[loading=false]:cursor-not-allowed' : 'aria-disabled:cursor-not-allowed',
+  ];
 
   const sizeClassName =
     size === 'lg'
@@ -90,29 +107,46 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     : size === 'lg' ? 'h-5 w-5 border-2'
     : 'h-4 w-4 border-2';
 
+  const buttonClassName = clsx(
+    ['group', 'relative'],
+    cursorClassName,
+    ['inline-flex', 'items-center', 'justify-center'],
+    gapClassName,
+    fontClassName,
+    paddingClassName,
+    shapeClassName,
+    borderClassName,
+    containerColorClassName,
+    sizeClassName,
+    ringClassName,
+    className
+  );
+
+  if (props.as === 'span') {
+    const { as: _, ...spanProps } = props;
+    return (
+      <span
+        {...spanProps}
+        ref={ref as ForwardedRef<HTMLSpanElement>}
+        className={buttonClassName}
+        aria-disabled={disabled}
+      >
+        <span className={clsx(labelClassName)}>{children}</span>
+      </span>
+    );
+  }
+
+  const { as: _, loading, ...buttonProps } = props;
+
   return (
     <button
-      ref={ref}
-      type={type}
-      className={clsx(
-        ['group', 'relative'],
-        cursorClassName,
-        ['flex', 'items-center', 'justify-center'],
-        gapClassName,
-        fontClassName,
-        paddingClassName,
-        shapeClassName,
-        borderClassName,
-        containerColorClassName,
-        sizeClassName,
-        ringClassName,
-        className
-      )}
-      data-loading={loading}
-      disabled={loading}
-      {...otherProps}
+      {...buttonProps}
+      ref={ref as ForwardedRef<HTMLButtonElement>}
+      className={buttonClassName}
+      data-loading={!!loading}
+      disabled={!!loading || disabled}
     >
-      <span className={clsx('group-data-[loading=true]:invisible', labelColorClassName)}>{children}</span>
+      <span className={clsx('group-data-[loading=true]:invisible', labelClassName)}>{children}</span>
       <div className={clsx(
         ['hidden', 'group-data-[loading=true]:inline-block'],
         ['absolute', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2'],

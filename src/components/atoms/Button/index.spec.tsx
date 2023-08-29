@@ -31,9 +31,21 @@ describe('Button', () => {
     expect(onClick).toHaveBeenCalled();
   });
 
-  it('can receive ref', () => {
+  it('can receive ref as button', () => {
     const ref = createRef<HTMLButtonElement>();
     render(<Button ref={ref}>Test</Button>);
+    expect(ref.current).toBeInTheDocument();
+  });
+
+  it('can render as span', () => {
+    render(<Button as="span">Test</Button>);
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    expect(screen.getByText('Test')).toBeInTheDocument();
+  });
+
+  it('can receive as span', () => {
+    const ref = createRef<HTMLDivElement>();
+    render(<Button as="span" ref={ref}>Test</Button>);
     expect(ref.current).toBeInTheDocument();
   });
 });

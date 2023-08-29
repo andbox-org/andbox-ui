@@ -36,6 +36,9 @@ const meta = {
     loading: {
       control: 'boolean',
     },
+    disabled: {
+      control: 'boolean',
+    },
   },
 } satisfies Meta<typeof Button>;
 
@@ -149,3 +152,23 @@ export const NeutralTextDisabled: Story = {
     disabled: true,
   },
 };
+
+export const AsSpan: Story = {
+  args: {
+    variant: 'primary',
+    size: 'md',
+    children: 'アクション',
+    as: 'span',
+  },
+};
+
+export const AsSpanDisabled: Story = {
+  args: {
+    variant: 'primary',
+    size: 'md',
+    children: 'アクション',
+    as: 'span',
+    disabled: true,
+  },
+};
+
