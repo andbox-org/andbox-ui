@@ -10,7 +10,6 @@ export * from './components/atoms/Section';
 export * from './components/atoms/Supplementary';
 
 export * from './components/molecules/AvatarArray';
-export * from './components/molecules/CheckboxGroup';
-export * from './components/molecules/InputGroup';
+export * from './components/molecules/Form';
 export * from './components/molecules/Main';
 export * from './components/molecules/UserSummary';
