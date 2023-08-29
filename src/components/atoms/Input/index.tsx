@@ -1,17 +1,18 @@
 import clsx from 'clsx';
-import { FC, InputHTMLAttributes } from 'react';
+import { ComponentPropsWithoutRef, forwardRef } from 'react';
 
-export type InputProps = InputHTMLAttributes<HTMLInputElement> & {
+export type InputProps = ComponentPropsWithoutRef<'input'> & {
   size?: 'sm' | 'md';
   error?: boolean;
   className?: string;
 };
 
-export const Input: FC<InputProps> = ({ size = 'md', error, className, ...props }) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ size = 'md', error, className, ...props }, ref) => {
   return (
     <input
-      data-error={error}
       {...props}
+      data-error={error}
+      ref={ref}
       className={clsx(
         size === 'sm' ? ['py-1.5', 'px-2.5'] : ['py-2', 'px-3'],
         ['bg-surface'],
@@ -25,4 +26,4 @@ export const Input: FC<InputProps> = ({ size = 'md', error, className, ...props 
       )}
     />
   );
-};
+});

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, forwardRef } from 'react';
 import {
   Root,
   Indicator,
@@ -14,18 +14,19 @@ export type CheckboxProps = _CheckboxProps & {
   className?: string;
 };
 
-export const Checkbox: FC<CheckboxProps> = ({
+export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(({
   checked,
   symbol = 'check',
   error,
   className,
   ...props
-}) => {
+}, ref) => {
   return (
     <Root
+      {...props}
+      ref={ref}
       data-error={error}
       checked={checked}
-      {...props}
       className={clsx(
         ['flex', 'items-center', 'justify-center'],
         ['w-5', 'h-5'],
@@ -58,4 +59,4 @@ export const Checkbox: FC<CheckboxProps> = ({
       </Indicator>
     </Root>
   );
-};
+});
