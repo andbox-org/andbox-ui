@@ -21,8 +21,8 @@ export const CheckboxField = forwardRef<HTMLButtonElement, CheckboxFieldProps>((
   const error = !!errorSlot;
   return (
     <div className={clsx('flex', 'flex-col', 'gap-2', 'group')} data-error={error} aria-disabled={disabled}>
-      <label className={clsx(['flex', 'items-center', 'gap-2', 'cursor-pointer', 'group-aria-disabled:cursor-not-allowed'], className)}>
-        <Checkbox {...props} ref={ref} error={error} disabled={disabled} />
+      <label className={clsx(['flex', 'items-start', 'gap-2', 'cursor-pointer', 'group-aria-disabled:cursor-not-allowed'], className)}>
+        <Checkbox {...props} className="flex-shrink-0" ref={ref} error={error} disabled={disabled} />
         <span className={clsx('font-sans', 'text-sm', 'group-aria-disabled:opacity-70')}>{label}</span>
       </label>
       <div className={clsx('ml-7', 'flex', 'flex-col', 'gap-2')}>
