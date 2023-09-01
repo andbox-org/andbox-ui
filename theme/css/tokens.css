@@ -58,7 +58,7 @@
   --md-ref-palette-tertiary100: #ffffff;
   /* neutral */
   --md-ref-palette-neutral0: #000000;
-  --md-ref-palette-neutral10: 45deg 100% 7%;
+  --md-ref-palette-neutral10: 0deg 0% 5%; /* Cod Gray 950 */
   --md-ref-palette-neutral20: #3c2f00;
   --md-ref-palette-neutral25: #493a00;
   --md-ref-palette-neutral30: #574500;
