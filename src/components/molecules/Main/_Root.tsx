@@ -8,7 +8,7 @@ export type MainRootProps = {
 
 export const Root: FC<MainRootProps> = ({ children, className }) => {
   return (
-    <main className={clsx('flex', 'flex-col', 'gap-16', className)}>
+    <main className={clsx('flex', 'flex-col', 'gap-10', className)}>
       {children}
     </main>
   );
