@@ -48,7 +48,7 @@ const Portal: FC<DialogPortalProps> = ({ children, ...props }) => (
 );
 
 const Content: FC<DialogContentProps> = forwardRef<HTMLDivElement, DialogDescriptionProps>(
-  ({ children, ...props }, ref) => (
+  ({ children, className, ...props }, ref) => (
     <Dialog.Content
       ref={ref}
       {...props}
@@ -56,7 +56,7 @@ const Content: FC<DialogContentProps> = forwardRef<HTMLDivElement, DialogDescrip
         'w-full max-w-md',
         'bg-surface rounded-xl shadow-lg py-4 px-5',
         'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2',
-        'flex flex-col gap-2',
+        className,
       )}
     >
       {children}
