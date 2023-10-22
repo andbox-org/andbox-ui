@@ -1,3 +1,5 @@
+import palette from 'tailwindcss/colors';
+
 export const colors = {
 	'transparent': 'transparent',
 	'brand': 'var(--md-source-primary)',
@@ -97,6 +99,11 @@ export const colors = {
 		DEFAULT: 'var(--md-sys-color-on-error)',
 		container: 'var(--md-sys-color-on-error-container)',
 	},
+	'success': {
+		...palette.emerald,
+		DEFAULT: palette.emerald[500],
+	},
+	'on-success': '#fff',
 	'background': 'var(--md-sys-color-background)',
 	'on-background': 'var(--md-sys-color-on-background)',
 	'surface': {
