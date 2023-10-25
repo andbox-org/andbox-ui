@@ -9,7 +9,7 @@ export type FormRootProps = ComponentPropsWithoutRef<'form'> & {
 export const Root = forwardRef<HTMLFormElement, FormRootProps>(
   ({ children, className, ...prop }, ref) => {
     return (
-      <form {...prop} className={clsx('flex flex-col gap-8', className)} ref={ref}>
+      <form {...prop} className={clsx('flex flex-col gap-6', className)} ref={ref}>
         {children}
       </form>
     );
