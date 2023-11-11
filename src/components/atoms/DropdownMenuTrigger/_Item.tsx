@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 // Radix primitive API: https://www.radix-ui.com/primitives/docs/components/dropdown-menu#item
 
-export type DropdownMenuItemProps = Omit<MenuItemProps, 'asChild'> & {
+export type DropdownMenuItemProps = MenuItemProps & {
   children: ReactNode;
   className?: string;
 };
@@ -25,6 +25,7 @@ export const _Item = forwardRef<HTMLDivElement, DropdownMenuItemProps>(({
         ['hover:bg-surface-container'],
         ['focus:bg-surface-container'],
         ['focus:outline-none'],
+        ['cursor-pointer'],
         ['disabled:opacity-50', 'disabled:cursor-not-allowed'],
         className
       )}
