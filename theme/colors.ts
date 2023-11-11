@@ -102,6 +102,7 @@ export const colors = {
 	'success': {
 		...palette.emerald,
 		DEFAULT: palette.emerald[500],
+		container: palette.emerald[50],
 	},
 	'on-success': '#fff',
 	'background': 'var(--md-sys-color-background)',
