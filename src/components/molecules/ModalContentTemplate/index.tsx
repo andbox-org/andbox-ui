@@ -51,7 +51,7 @@ export type ModalContentTemplateProps = {
   );
 };
 
-export const ModalContentTemplate = ({
+export const ModalContentTemplate = forwardRef<HTMLDivElement, ModalContentTemplateProps>(({
   title,
   description,
   variant = 'default',
@@ -59,9 +59,10 @@ export const ModalContentTemplate = ({
   children,
   primaryAction,
   secondaryAction,
-}: ModalContentTemplateProps) => {
+}, ref) => {
+
   return (
-    <Modal.Content className="flex flex-col gap-6">
+    <Modal.Content className="flex flex-col gap-6" ref={ref}>
       <_Layout layout={layout}>
         <_Mark variant={variant} />
         <_Body title={title} description={description}>
@@ -69,18 +70,12 @@ export const ModalContentTemplate = ({
         </_Body>
       </_Layout>
       <div className="flex gap-2 justify-between">
-        {secondaryAction && (
-          <_ModalCloseSwitch close={secondaryAction.close}>
-            <_SecondaryButton {...secondaryAction} />
-          </_ModalCloseSwitch>
-        )}
-        <_ModalCloseSwitch close={primaryAction.close}>
-          <_PrimaryButton variant={variant} {...primaryAction} />
-        </_ModalCloseSwitch>
+        {secondaryAction && <_SecondaryButton {...secondaryAction} />}
+        <_PrimaryButton variant={variant} {...primaryAction} />
       </div>
     </Modal.Content>
   );
-};
+});
 
 const _Body = ({
   title,
@@ -137,29 +132,34 @@ const _Layout = ({
 };
 
 const _PrimaryButton = ({
+  close,
   variant,
   label,
   ...props
 }: Pick<ModalContentTemplateProps, 'variant'> &
-  Omit<ModalContentTemplateProps['primaryAction'], 'close'>) => {
+  ModalContentTemplateProps['primaryAction']) => {
   return (
-    <Button
-      {...props}
-      className="w-full"
-      variant={variant === 'danger' ? 'danger' : 'primary'}
-    >
-      {label}
-    </Button>
+    <_ModalCloseSwitch close={close}> 
+      <Button
+        {...props}
+        className="w-full"
+        variant={variant === 'danger' ? 'danger' : 'primary'}
+      >
+        {label}
+      </Button>
+    </_ModalCloseSwitch>
   );
 };
 
 const _SecondaryButton = forwardRef<
   HTMLButtonElement,
-  Omit<NonNullable<ModalContentTemplateProps['secondaryAction']>, 'close'>
->(({ label, ...props }, ref) => (
-  <Button {...props} ref={ref} className="w-full" variant="neutral-outlined">
-    {label}
-  </Button>
+  NonNullable<ModalContentTemplateProps['secondaryAction']>
+>(({ close, label, ...props }, ref) => (
+  <_ModalCloseSwitch close={close}> 
+    <Button {...props} ref={ref} className="w-full" variant="neutral-outlined">
+      {label}
+    </Button>
+  </_ModalCloseSwitch>
 ));
 
 const _ModalCloseSwitch = ({
