@@ -31,7 +31,7 @@ const Description = forwardRef<HTMLParagraphElement, DialogDescriptionProps>(
     <Dialog.Description
       {...props}
       ref={ref}
-      className="text-sm text-on-surface"
+      className="text-base text-on-surface"
     />
   ),
 );
@@ -47,7 +47,7 @@ const Portal: FC<DialogPortalProps> = ({ children, ...props }) => (
   </Dialog.Portal>
 );
 
-const Content: FC<DialogContentProps> = forwardRef<HTMLDivElement, DialogDescriptionProps>(
+const Content = forwardRef<HTMLDivElement, DialogDescriptionProps>(
   ({ children, className, ...props }, ref) => (
     <Dialog.Content
       ref={ref}
