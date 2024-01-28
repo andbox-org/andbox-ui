@@ -6,6 +6,8 @@ type ButtonCommonProps = {
   variant?:
     | 'primary'
     | 'danger'
+    | 'danger-outlined'
+    | 'danger-text'
     | 'neutral-filled'
     | 'neutral-outlined'
     | 'neutral-text';
@@ -34,8 +36,8 @@ export const Button = forwardRef<HTMLButtonElement | HTMLSpanElement, ButtonProp
   ...props
 }, ref) => {
   const shapeClassName = {
-    'rounded-lg': variant !== 'neutral-text',
-    border: variant === 'neutral-outlined',
+    'rounded-lg': (variant !== 'neutral-text' && variant !== 'danger-text'),
+    border: (variant === 'neutral-outlined' || variant === 'danger-outlined'),
   };
 
   const disabledOpacityClassName = 
@@ -46,9 +48,11 @@ export const Button = forwardRef<HTMLButtonElement | HTMLSpanElement, ButtonProp
       ? ['bg-primary', disabledOpacityClassName, 'hover:data-[loading=false]:opacity-80']
       : variant === 'danger'
       ? ['bg-error', disabledOpacityClassName, 'hover:data-[loading=false]:opacity-80']
+      : variant === 'danger-outlined'
+      ? ['border-error', 'bg-surface', disabledOpacityClassName, 'hover:data-[loading=false]:opacity-70']
       : variant === 'neutral-outlined'
       ? ['border-outline-variant', 'bg-surface', disabledOpacityClassName, 'hover:data-[loading=false]:opacity-70']
-      : variant === 'neutral-text'
+      : (variant === 'neutral-text' || variant === 'danger-text')
       ? []
       : ['bg-on-surface', disabledOpacityClassName, 'hover:data-[loading=false]:opacity-80']; // neutral-filled
   
@@ -56,12 +60,14 @@ export const Button = forwardRef<HTMLButtonElement | HTMLSpanElement, ButtonProp
     size ==='lg' ? 'text-base' : size === 'sm' ? 'text-xs' : 'text-sm',
     variant === 'primary' ? ['text-on-primary']
     : variant === 'danger' ? ['text-on-error']
+    : variant === 'danger-outlined' ? ['text-error']
     : variant === 'neutral-outlined' ? ['text-on-surface']
+    : variant === 'danger-text' ? ['text-error', props.as === 'span' ? 'group-aria-disabled:opacity-30' : 'group-disabled:opacity-30']
     : variant === 'neutral-text' ? ['text-on-surface', props.as === 'span' ? 'group-aria-disabled:opacity-30' : 'group-disabled:opacity-30']
     : ['text-surface'] // neutral-filled
   ];
   
-  const ringClassName = variant === 'neutral-outlined' ? ['ring-1', 'ring-inset', 'ring-outline-variant'] : [];
+  const ringClassName = (variant === 'neutral-outlined' || variant === 'danger-outlined') ? ['ring-1', 'ring-inset', 'ring-outline-variant'] : [];
 
   const cursorClassName = [
     'data-[loading=true]:cursor-progress', 
@@ -76,28 +82,30 @@ export const Button = forwardRef<HTMLButtonElement | HTMLSpanElement, ButtonProp
       : 'text-sm leading-[0.875rem]';
 
   const paddingClassName =
-    variant !== 'neutral-text'
+    (variant !== 'neutral-text' && variant !== 'danger-text')
       ? size === 'lg'
         ? 'px-5 py-3'
         : size === 'sm'
         ? 'px-3 py-1.5'
         : 'px-4 py-2'
       : size === 'lg'
-      ? 'px-2 py-2'
+      ? 'py-2'
       : size === 'sm'
-      ? 'px-1 py-1'
-      : 'px-2 py-2';
+      ? 'py-1'
+      : 'py-2';
 
   const fontClassName =
     variant === 'neutral-text' ? 'font-medium' : 'font-bold';
 
-  const borderClassName = variant === 'neutral-outlined' ? 'border' : '';
+  const borderClassName = (variant === 'neutral-outlined' || variant === 'danger-outlined') ? 'border' : '';
 
   const gapClassName = size === 'sm' ? 'gap-1' : size === 'lg' ? 'gap-2' : 'gap-2';
 
   const loadingColorClassName =
     variant === 'primary' ? 'border-on-primary'
     : variant === 'danger' ? 'border-on-error'
+    : variant === 'danger-outlined' ? 'border-error'
+    : variant === 'danger-text' ? 'border-error'
     : variant === 'neutral-outlined' ? 'border-on-surface'
     : variant === 'neutral-text' ? 'border-on-surface'
     : 'border-surface';

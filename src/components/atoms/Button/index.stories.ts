@@ -54,6 +54,30 @@ export const Primary: Story = {
   },
 };
 
+export const Danger: Story = {
+  args: {
+    variant: 'danger',
+    size: 'md',
+    children: 'アクション',
+  },
+};
+
+export const DangerOutlined: Story = {
+  args: {
+    variant: 'danger-outlined',
+    size: 'md',
+    children: 'アクション',
+  },
+};
+
+export const DangerText: Story = {
+  args: {
+    variant: 'danger-text',
+    size: 'md',
+    children: 'アクション',
+  },
+};
+
 export const NeutralFilled: Story = {
   args: {
     variant: 'neutral-filled',
@@ -78,10 +102,36 @@ export const NeutralText: Story = {
   },
 };
 
-
 export const PrimaryLoading: Story = {
   args: {
     variant: 'primary',
+    size: 'md',
+    children: 'アクション',
+    loading: true,
+  },
+};
+
+export const DangerLoading: Story = {
+  args: {
+    variant: 'danger',
+    size: 'md',
+    children: 'アクション',
+    loading: true,
+  },
+};
+
+export const DangerOutlinedLoading: Story = {
+  args: {
+    variant: 'danger-outlined',
+    size: 'md',
+    children: 'アクション',
+    loading: true,
+  },
+};
+
+export const DangerTextLoading: Story = {
+  args: {
+    variant: 'danger-text',
     size: 'md',
     children: 'アクション',
     loading: true,
@@ -119,6 +169,33 @@ export const NeutralTextLoading: Story = {
 export const PrimaryDisabled: Story = {
   args: {
     variant: 'primary',
+    size: 'md',
+    children: 'アクション',
+    disabled: true,
+  },
+};
+
+export const DangerDisabled: Story = {
+  args: {
+    variant: 'danger',
+    size: 'md',
+    children: 'アクション',
+    disabled: true,
+  },
+};
+
+export const DangerOutlinedDisabled: Story = {
+  args: {
+    variant: 'danger-outlined',
+    size: 'md',
+    children: 'アクション',
+    disabled: true,
+  },
+};
+
+export const DangerTextDisabled: Story = {
+  args: {
+    variant: 'danger-text',
     size: 'md',
     children: 'アクション',
     disabled: true,
